@@ -80,8 +80,6 @@ classDiagram
 ```text
 reservasi_hotel_mvc_database/
 ├── app.py
-├── assets/
-│   └── uml_reservasi.png
 ├── pages/
 │   ├── 1_Kamar.py
 │   ├── 2_Tamu.py
