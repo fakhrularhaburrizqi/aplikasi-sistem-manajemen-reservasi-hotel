@@ -1,7 +1,5 @@
 # Aplikasi Manajemen Reservasi Hotel — MVC + Streamlit + SQLite
 
-![Class Diagram Reservasi Hotel](assets/uml_reservasi.png)
-
 Aplikasi berbasis **Object-Oriented Programming (OOP)**, arsitektur **MVC (Model-View-Controller)**, dan **Streamlit** untuk mengelola data kamar, tamu, dan reservasi hotel menggunakan **SQLite** sebagai database.
 
 ---
