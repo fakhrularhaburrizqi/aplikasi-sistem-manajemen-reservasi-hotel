@@ -115,34 +115,3 @@ reservasi_hotel_mvc_database/
 ├── .env.example
 └── README.md
 ```
-
----
-
-## Akun Bawaan (Default Login)
-
-- **Username**: `admin`
-- **Password**: `admin123`
-
----
-
-## Cara Menjalankan
-
-1. **Clone atau pastikan berada di direktori proyek**
-
-2. **Buat virtual environment** (disarankan):
-```bash
-python -m venv venv
-.\venv\Scripts\activate
-```
-
-3. **Install dependencies**:
-```bash
-pip install -r requirements.txt
-```
-
-4. **Jalankan aplikasi**:
-```bash
-streamlit run app.py
-```
-
-5. **Buka browser** di `http://localhost:8501` dan login menggunakan kredensial di atas.
