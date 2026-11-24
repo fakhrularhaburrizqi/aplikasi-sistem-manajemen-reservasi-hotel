@@ -54,12 +54,26 @@ classDiagram
 - **Relasi**: Ber-**Association** ke Reservasi (satu tamu dapat memiliki banyak reservasi)
 
 ### 2. Reservasi
-- **Atribut**: id_reservasi (primary key), tamu (foreign key), daftar_detail (list detail reservasi)
-- **Method**: 
-  - `tambah_kamar()` — menambahkan detail kamar ke reservasi
-  - `hitung_total()` — menghitung total harga reservasi
-  - `cetak_struk()` — mencetak struk reservasi
-- **Relasi**: Ber-**Composition** ke DetailReservasi (reservasi "memiliki" detail reservasi, jika dihapus reservasi, detailnya juga ikut hapus)
+- **Atribut**:
+  - `id_reservasi` (primary key)
+  - `tamu` (foreign key, objek `Tamu`)
+  - `tgl_check_in` (tanggal masuk, bertipe `date`)
+  - `tgl_check_out` (tanggal keluar, bertipe `date`)
+  - `daftar_detail` (list detail reservasi)
+  - Semua atribut bersifat private dan diakses lewat `@property`. Selain itu ada property turunan `jumlah_malam`, yaitu selisih hari antara `tgl_check_out` dan `tgl_check_in`.
+- **Method**:
+  - `tambah_kamar(kamar)` — menambahkan detail kamar ke reservasi. Jumlah malam diambil otomatis dari tanggal check-in dan check-out. Kamar harus berstatus tersedia, dan statusnya berubah menjadi tidak tersedia setelah ditambahkan.
+  - `hitung_total()` — menghitung total harga reservasi dengan menjumlahkan subtotal semua detail.
+  - `cetak_struk()` — mencetak struk reservasi (ID, data tamu, tanggal check-in dan check-out, lama menginap, rincian kamar, dan total).
+- **Validasi (Custom Exception)**:
+  - `TamuTidakValidError` — jika tamu bukan objek `Tamu`.
+  - `TanggalTidakValidError` — jika tanggal bukan objek `date`, atau check-out tidak setelah check-in.
+  - `KamarTidakTersediaError` — jika kamar yang ditambahkan tidak tersedia.
+  - `ReservasiKosongError` — jika struk dicetak sebelum ada kamar yang dipesan.
+  - Semuanya turunan dari `ReservasiError`.
+- **Relasi**:
+  - Ber-**Association** ke Tamu (reservasi menyimpan referensi ke tamu pemiliknya).
+  - Ber-**Composition** ke DetailReservasi (reservasi "memiliki" detail reservasi, dan objek detail dibuat di dalam `tambah_kamar()`. Jika reservasi dihapus, detailnya juga ikut hapus).
 
 ### 3. DetailReservasi
 - **Atribut**: kamar (foreign key), jumlah_malam
