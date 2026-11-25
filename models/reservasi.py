@@ -107,7 +107,7 @@ class Reservasi:
         )
         detail.tambah_detail()
         self.__daftar_detail.append(detail)
-        kamar.ubah_status()
+        kamar.ubah_status(STATUS_TERISI)
         return detail
 
     def hitung_total(self):
