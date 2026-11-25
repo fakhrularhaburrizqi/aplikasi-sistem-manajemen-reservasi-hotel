@@ -1,6 +1,6 @@
 import unittest
 
-from detail_reservasi import (
+from models.detail_reservasi import (
     DataDetailTidakLengkapError,
     DetailReservasi,
     DetailReservasiError,
