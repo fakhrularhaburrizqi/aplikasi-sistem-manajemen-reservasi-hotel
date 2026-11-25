@@ -3,7 +3,8 @@ from datetime import date, datetime
 from models.tamu import Tamu
 from models.detail_reservasi import DetailReservasi
 
-STATUS_TERSEDIA = "tersedia"
+STATUS_TERSEDIA = "Tersedia"
+STATUS_TERISI = "Terisi"
 
 
 class ReservasiError(Exception):
