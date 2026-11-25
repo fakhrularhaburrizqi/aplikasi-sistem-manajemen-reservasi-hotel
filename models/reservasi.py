@@ -68,7 +68,6 @@ class Reservasi:
                 tgl_check_in, tgl_check_out,
             )
 
-    # ---------- getter ----------
     @property
     def id_reservasi(self):
         return self.__id_reservasi
@@ -94,20 +93,25 @@ class Reservasi:
     def daftar_detail(self):
         return list(self.__daftar_detail)
 
-    # ---------- method sesuai UML ----------
     def tambah_kamar(self, kamar):
         """Menambahkan detail kamar ke reservasi."""
         if kamar.status != STATUS_TERSEDIA:
             raise KamarTidakTersediaError(kamar.nomor_kamar)
 
-        detail = DetailReservasi(kamar, self.jumlah_malam)
+        detail = DetailReservasi(
+            reservasi=self,
+            kamar=kamar,
+            jumlah_malam=self.jumlah_malam,
+            harga_kamar=kamar.harga,
+        )
+        detail.tambah_detail()
         self.__daftar_detail.append(detail)
         kamar.ubah_status()
         return detail
 
     def hitung_total(self):
         """Menghitung total harga reservasi."""
-        return sum(d.get_subtotal() for d in self.__daftar_detail)
+        return sum(d.subtotal for d in self.__daftar_detail)
 
     def cetak_struk(self):
         """Mengembalikan struk reservasi dalam bentuk string."""
@@ -130,8 +134,8 @@ class Reservasi:
             k = d.kamar
             baris.append(
                 f"Kamar {k.nomor_kamar} ({k.tipe_kamar}) "
-                f"{d.jumlah_malam} malam x Rp{k.harga:,.0f}"
+                f"{d.jumlah_malam} malam x Rp{d.harga_kamar:,.0f}"
             )
-            baris.append(f"{'Subtotal':>30}: Rp{d.get_subtotal():,.0f}")
+            baris.append(f"{'Subtotal':>30}: Rp{d.subtotal:,.0f}")
         baris += ["-" * 44, f"{'TOTAL':>30}: Rp{self.hitung_total():,.0f}", garis]
         return "\n".join(baris)
