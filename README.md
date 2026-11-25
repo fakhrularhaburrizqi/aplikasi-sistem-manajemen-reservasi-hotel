@@ -6,43 +6,7 @@ Aplikasi berbasis **Object-Oriented Programming (OOP)**, arsitektur **MVC (Model
 
 ## Implementasi Sesuai Class Diagram
 
-```mermaid
-classDiagram
-    class Tamu {
-        - nik
-        - nama
-        - no_telp
-        + get_info_tamu()
-    }
-
-    class Reservasi {
-        - id_reservasi
-        - tamu
-        - daftar_detail
-        + tambah_kamar()
-        + hitung_total()
-        + cetak_struk()
-    }
-
-    class DetailReservasi {
-        - kamar
-        - jumlah_malam
-        + get_subtotal()
-    }
-
-    class Kamar {
-        - nomor_kamar
-        - tipe_kamar
-        - harga
-        - status
-        + get_info_kamar()
-        + ubah_status()
-    }
-
-    Tamu <|-- Reservasi : Association
-    Reservasi *-- DetailReservasi : Composition
-    DetailReservasi ..|> Kamar : Aggregation
-```
+![UML Class Diagram Reservasi Hotel](assets/uml_class_diagram_reservasi_hotel_revisi.png)
 
 ---
 
