@@ -17,7 +17,7 @@ from models.reservasi import (
 
 class TestReservasi(unittest.TestCase):
     def setUp(self):
-        self.tamu = Tamu("3326010101010001", "Buang Santoso", "081234567890")
+        self.tamu = Tamu("3326010101010001", "Budi Santoso", "081234567890")
         self.check_in = date(2026, 11, 20)
         self.check_out = date(2026, 11, 22)
         self.k1 = Kamar("101", "Deluxe", 500000)
